@@ -1,0 +1,38 @@
+#Beautifulsoup for parsing XML for HK Bus Route
+
+from bs4 import BeautifulSoup
+
+##response = requests.get('http://search.kmb.hk/KMBWebSite/?action=routesearch&route=1&lang=zh-cn')
+soup = BeautifulSoup(open("ROUTE_BUS_E.xml"))
+import lxml
+#soup.contents[0]
+
+
+no = input("Search Key Word: ")
+b = soup.find(lambda tag:tag.name=="route_namee" and no in tag.text)
+b.text
+##XML descendants
+for text in b.descendants:
+    print("Route_Name :",text)
+    
+for text in b.descendants:
+    print("Route_Name :",text)
+
+c = b.find_next("company_code")
+for text in c.descendants:
+    print("Company_code :",text)
+c = b.find_next("journey_time")
+for text in c.descendants:
+    print("Journey_time :",text)
+c = b.find_next("loc_start_namee")
+for text in c.descendants:
+    print("Loc_start_namee :",text)
+c = b.find_next("loc_end_namee")
+for text in c.descendants:
+    print("Loc_end_namee :",text)
+c = b.find_next("hyperlink_e")
+for text in c.descendants:
+    print("Hyperlink_e :",text)
+c = b.find_next("full_fare")
+for text in c.descendants:
+    print("Full_fare :",text) 
